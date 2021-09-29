@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <%- include('../common/_navBar.ejs') %>
+        <div class="container">
+            <form class="w-50 mt-5 m-auto" action="/auth/signup" method="POST">
+                <div class="mb-3">
+                    <label for="fNameInp" class="form-label">First name</label>
+                    <input name="fNameInp" required type="text" class="form-control" id="fNameInp">
+                </div>
+                <div class="mb-3">
+                    <label for="lNameInp" class="form-label">Last name</label>
+                    <input name="lNameInp" required type="text" class="form-control" id="lNameInp">
+                </div>
+                <div class="mb-3">
+                    <label for="mailInp" class="form-label">Email address</label>
+                    <input name="mailInp" required type="email" class="form-control" id="mailInp"
+                        aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="passInp" class="form-label">Password</label>
+                    <input name="passInp" required type="password" class="form-control" id="passInp">
+                </div>
+                <div class="mb-3">
+                    <label for="conPassInp" class="form-label">Confirm Password</label>
+                    <input name="conPassInp" required type="password" class="form-control" id="conPassInp">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+        </div>
+</body>
+
+</html>
