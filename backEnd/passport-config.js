@@ -55,7 +55,8 @@ function initialize(passport){
                         email:results[0].email,
                         password:results[0].pass,
                         username: results[0].username,
-                        name: results[0].full_name
+                        name: results[0].full_name,
+                        role: results[0].role
                     }
                     return done(null,user);
                 }

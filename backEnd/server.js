@@ -39,7 +39,7 @@ const modRouter = require('./routes/moderator');
 app.use('/mod',modRouter);
 
 app.get('/', async (req,res)=>{
-    res.render('home/');
+    res.render('home/',{user:req.user});
 });
 app.get('/search', async (req,res)=>{
     res.render('search/');
