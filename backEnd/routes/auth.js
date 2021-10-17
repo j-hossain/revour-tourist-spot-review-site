@@ -21,7 +21,7 @@ authRouter.get('/signin',checkAuthenticated, async (req,res)=>{
 authRouter.post('/signin', passport.authenticate('local',{
     successRedirect: '/profile/about',
     failureRedirect: '/auth/signin',
-    failureFlash:true
+    failureFlash:true,
 }));
 
 authRouter.get('/signup',checkAuthenticated, async (req,res)=>{

@@ -35,6 +35,8 @@ const authRouter = require('./routes/auth');
 app.use('/auth',authRouter);
 const profileRouter = require('./routes/profile');
 app.use('/profile',profileRouter);
+const modRouter = require('./routes/moderator');
+app.use('/mod',modRouter);
 
 app.get('/', async (req,res)=>{
     res.render('home/');

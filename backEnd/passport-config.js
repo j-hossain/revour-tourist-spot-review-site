@@ -15,7 +15,7 @@ function initialize(passport){
                         email:results[0].email,
                         password:results[0].pass,
                         name: results[0].full_name,
-                        confirmed: results[0].confirmed
+                        confirmed: results[0].confirmed,
                     }
                     try{
                         if(await bcrypt.compare(password,user.password)){
