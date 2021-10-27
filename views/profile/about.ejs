@@ -1,9 +1,14 @@
-<% var pageTitle="About - " +user.username %>
-    <!-- body is started here -->
-    <%- include('../common/_header.ejs',{pageTitle:pageTitle}) %>
-        <h1>
-            <%= user.name %>
-        </h1>
-        </body>
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>About - <%= user.username %>
+    </title>
+    </head>
 
-        </html>
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <h1>
+                <%= user.name %>
+            </h1>
+    </body>
+
+    </html>

@@ -1,0 +1,7 @@
+#bannerCarousel {
+  height: 90vh;
+}
+
+#bannerCarousel .carousel-item {
+  height: 90vh;
+}

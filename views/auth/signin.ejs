@@ -1,27 +1,31 @@
-<% var pageTitle="Revour - sign in" %>
-    <!-- body is started here -->
-    <%- include('../common/_header.ejs',{pageTitle:pageTitle}) %>
-        <div class="container">
-            <form class="w-50 mt-5 m-auto" action="/auth/signin" method="POST">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input name="email" required type="email" class="form-control" id="email"
-                        aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input name="password" required type="password" class="form-control" id="password1">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </form>
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Revour - Sign in</title>
+    </head>
 
-            <% if(messages.error){ %>
-                <h1>
-                    <%= messages.error %>
-                </h1>
-                <% } %>
-        </div>
-        </body>
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="container">
+                <form class="w-50 mt-5 m-auto" action="/auth/signin" method="POST">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input name="email" required type="email" class="form-control" id="email"
+                            aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input name="password" required type="password" class="form-control" id="password1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
 
-        </html>
+                <% if(messages.error){ %>
+                    <h1>
+                        <%= messages.error %>
+                    </h1>
+                    <% } %>
+            </div>
+    </body>
+
+    </html>
