@@ -1,0 +1,30 @@
+<% let pageTitle="Revour - tourist spot review site" %>
+    <!-- body is started here -->
+    <%- include('../common/_header.ejs',{pageTitle:pageTitle}) %>
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+            #map {
+                height: 500px;
+                width: 500px;
+                margin: 30px auto;
+            }
+
+            /* Optional: Makes the sample page fill the window. */
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <div id="map"></div>
+        <div class="serachBox">
+            <!-- <form class="w-25 mt-5 m-auto" action=""> -->
+            <input class="form-control searchPlace" type="text">
+            <button onclick="searchPlaces()" class="btn btn-danger">Go</button>
+            <!-- </form> -->
+        </div>
+        <script src="/js/mapBox.js"></script>
+
+        </html>
