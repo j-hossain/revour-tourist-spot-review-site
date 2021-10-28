@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.contentBody {
+  margin-bottom: 30px;
+}
+
+/* styling navbar starts */
+.navbar-brand img {
+  height: 60px;
+}
+
+.navbar-nav {
+  column-gap: 30px;
+}
+/* styling navbar ends */
+
+/* styling footer starts */
+#footer {
+  background: #ccc;
+  font-size: 18px;
+  padding: 20px 0;
+}
+
+#footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#footer .container .socialPanel {
+  display: flex;
+  column-gap: 20px;
+}
+
+#footer a {
+  color: cornflowerblue;
+}
+/* styling footer ends */

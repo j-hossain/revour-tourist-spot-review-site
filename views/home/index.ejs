@@ -6,43 +6,83 @@
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-    </body>
-    <div class="container">
-        <!-- banner carousel starting -->
-        <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/images/homepage/bannerCarousel/image1.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+            <div class="contentBody">
+                <!-- banner carousel starting -->
+                <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/images/homepage/bannerCarousel/image2.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/images/homepage/bannerCarousel/image1.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/homepage/bannerCarousel/image2.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Some representative placeholder content for the second slide.</p>
+                            </div>
+                        </div>
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+                <!-- banner carousel ending -->
+                <!-- search intro section starting -->
+                <section id="searchPlace" class="sectionContainer container">
+                    <h3 class="sectionTitle">Want to go on a tour ?</h3>
+                    <p class="sectionText">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure esse et dolorem earum quas
+                        reiciendis,
+                        recusandae necessitatibus? Soluta dolorem aspernatur quaerat eligendi ex, laudantium ullam
+                        officia
+                        sapiente, et facere a. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem odio
+                        molestiae
+                        impedit eligendi doloribus unde ea quae non minima deleniti. Lorem ipsum dolor, sit amet
+                        consectetur adipisicing elit. Dolorum dolore voluptate minus distinctio laborum. Quaerat,
+                        cupiditate rerum voluptatem fuga velit dolorum repudiandae labore enim ea distinctio eos sunt
+                        culpa exercitationem!
+                    </p>
+                    <a href="/search"><button type="button" class="btn btn-info sectionBtn">Seacrh a place</button></a>
+                </section>
+                <!-- search intro section ending -->
+                <!-- review intro section starting -->
+                <section id="reviewAndEarn" class="sectionContainer container">
+                    <h3 class="sectionTitle">Review and Earn</h3>
+                    <p class="sectionText">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure esse et dolorem earum quas
+                        reiciendis,
+                        recusandae necessitatibus? Soluta dolorem aspernatur quaerat eligendi ex, laudantium ullam
+                        officia
+                        sapiente, et facere a. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem odio
+                        molestiae
+                        impedit eligendi doloribus unde ea quae non minima deleniti. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Accusamus ex accusantium quisquam exercitationem! Incidunt maxime,
+                        modi debitis deserunt voluptatem deleniti, expedita voluptas impedit saepe, odit assumenda
+                        ratione iusto maiores quod.
+                    </p>
+                    <a href="/search"><button type="button" class="btn btn-info sectionBtn">Revour it</button></a>
+                </section>
+                <!-- review intro section ending -->
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <!-- banner carousel ending -->
+            <%- include('../common/_footer.ejs') %>
 
-    </div>
+    </body>
+
 
     </html>

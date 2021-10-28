@@ -5,7 +5,7 @@
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-            <div class="container">
+            <div class="container contentBody">
                 <form class="w-50 mt-5 m-auto" action="/auth/signin" method="POST">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -26,6 +26,7 @@
                     </h1>
                     <% } %>
             </div>
+            <%- include('../common/_footer.ejs') %>
     </body>
 
     </html>
