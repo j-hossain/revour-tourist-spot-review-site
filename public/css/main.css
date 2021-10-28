@@ -8,8 +8,17 @@ a {
   text-decoration: none;
 }
 
+/* making all buttons rounded cornered */
+.btn {
+  border-radius: 15px;
+}
+.btn:hover {
+  color: #eee;
+}
+
 .contentBody {
   margin-bottom: 30px;
+  min-height: 75vh;
 }
 
 /* styling navbar starts */
@@ -24,9 +33,10 @@ a {
 
 /* styling footer starts */
 #footer {
-  background: #ccc;
+  background-color: rgb(16, 50, 70);
   font-size: 18px;
   padding: 20px 0;
+  color: #ddd;
 }
 
 #footer .container {
@@ -39,7 +49,4 @@ a {
   column-gap: 20px;
 }
 
-#footer a {
-  color: cornflowerblue;
-}
 /* styling footer ends */
