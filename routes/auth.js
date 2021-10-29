@@ -6,6 +6,7 @@ const passport = require('passport');
 const slugify = require('slugify');
 const nodemailer = require('nodemailer');
 
+
 const transporter = nodemailer.createTransport({
     service:"gmail",
     auth:{
@@ -117,6 +118,54 @@ function sendConfirmationMail(email){
         }
     });
 }
+
+authRouter.post("/check-login", async (req,res)=>{
+    console.log(req.body);
+    const email = req.body["email"];
+    const pass = req.body["pass"];
+    // console.log(req);
+    console.log(email);
+    console.log(pass);
+    let user;
+    await db.query('select * from user_main where email=?',[email],async (err,results)=>{
+        if(err)
+            res.send(err);
+        else{
+            if(results.length>0){
+                user = {
+                    id: results[0].id,
+                    username: results[0].username,
+                    email:results[0].email,
+                    password:results[0].pass,
+                    name: results[0].full_name,
+                    confirmed: results[0].confirmed,
+                }
+                try{
+                    if(await bcrypt.compare(pass,user.password)){
+                        if(user.confirmed=="true"){
+                            res.send("ok");
+                            return;
+                        }
+                        else{
+                            res.send("please varify your email first");
+                            return;
+                        }
+                    }else{
+                        res.send("password didn't match");
+                        return;
+                    }
+                }
+                catch(e){
+                    res.send(e);
+                }
+            }
+            else{
+                res.send("No user with the email");
+                return;
+            }
+        }
+    });
+});
 
 
 function checkAuthenticated(req, res, next){

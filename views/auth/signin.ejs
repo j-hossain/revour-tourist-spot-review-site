@@ -2,36 +2,21 @@
 <%- include('../common/_header.ejs') %>
     <title>Revour - Sign in</title>
     <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/signin.js"></script>
     </head>
 
     <body>
         <%- include('../common/_navBar.ejs') %>
             <div class="container contentBody">
-                <form class="authBox" action="/auth/signin" method="post">
+                <form class="authBox" action="/auth/signin" onsubmit="return checkSignIn();" method="post">
                     <h1>Sign in</h1>
                     <input name="email" required type="email" id="email" placeholder="Username">
                     <input name="password" required type="password" id="password" placeholder="Password">
                     <button type="submit">Sign in</button>
                 </form>
-
-                <% if(messages.error){ %>
-                    <h1>
-                        <%= messages.error %>
-                    </h1>
-                    <% } %>
+                <div class="err"></div>
             </div>
             <%- include('../common/_footer.ejs') %>
     </body>
 
     </html>
-    <!-- <form class="w-50 mt-5 m-auto" action="/auth/signin" method="POST">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input name="email" required type="email" class="form-control" id="email">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input name="password" required type="password" class="form-control" id="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </form> -->
