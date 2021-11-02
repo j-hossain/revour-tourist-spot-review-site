@@ -42,6 +42,8 @@ const profileRouter = require('./routes/profile');
 app.use('/profile',profileRouter);
 const modRouter = require('./routes/moderator');
 app.use('/mod',modRouter);
+const reviewRouter = require('./routes/review');
+app.use('/review',reviewRouter);
 
 app.get('/', async (req,res)=>{
     res.render('home/',{user:req.user});
