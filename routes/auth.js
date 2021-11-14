@@ -120,12 +120,8 @@ function sendConfirmationMail(email){
 }
 
 authRouter.post("/check-login", async (req,res)=>{
-    console.log(req.body);
     const email = req.body["email"];
     const pass = req.body["pass"];
-    // console.log(req);
-    console.log(email);
-    console.log(pass);
     let user;
     await db.query('select * from user_main where email=?',[email],async (err,results)=>{
         if(err)

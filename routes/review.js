@@ -6,7 +6,7 @@ const passport = require('passport');
 const slugify = require('slugify');
 
 reviewRouter.get('/write',checkAuthenticated,(req,res)=>{
-    res.render('review/write');
+    res.render('review/write-review',{user:req.user});
 });
 
 function checkAuthenticated(req, res, next){

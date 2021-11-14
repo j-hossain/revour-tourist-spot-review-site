@@ -1,5 +1,28 @@
-form {
+.reviewForm {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.reviewForm input {
+  padding: 5px;
+}
+
+.extraInfoDiv {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 90% 10%;
+  justify-content: space-around;
+  row-gap: 20px;
+  padding-bottom: 30px;
+}
+
+.extraInfoDiv label {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+textarea {
+  min-height: 400px;
+  width: 100%;
 }

@@ -1,0 +1,63 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Revour - write a review</title>
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/reviewWrite.css">
+    <script src="https://cdn.tiny.cloud/1/x6uvlmtjsi6k2x8iyc1lg8nhoczdcubehb1wzkkuzuzde2p2/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="container contentBody">
+                <h1>Write a review</h1>
+                <form class="w-75 m-auto reviewForm" id="reviewForm" action="#" onsubmit="return publishReview();"
+                    method="POST">
+                    <h3 class="text-center">Select a tourist spot</h3>
+                    <div id="map" class="m-auto w-100"></div>
+                    <div class="extraInfoDiv">
+                        <label for="title">Place name</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" id="title"
+                            name="title">
+                            <!-- <option value="1">Hills</option>
+                            <option value="2">Sea beach</option>
+                            <option value="3">Historical</option> -->
+                        </select>
+                    </div>
+                    <div class="extraInfoDiv">
+                        <label for="category">Category</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="1">Hills</option>
+                            <option value="2">Sea beach</option>
+                            <option value="3">Historical</option>
+                        </select>
+                    </div>
+                    <div class="extraInfoDiv">
+                        <label for="foodCulture">Food culture</label>
+                        <textarea type="text" name="foodCulture" id="foodCulture"></textarea>
+                    </div>
+                    <div class="extraInfoDiv">
+                        <label for="residential">Residential facilities</label>
+                        <textarea type="text" name="residential" id="residential"></textarea>
+                    </div>
+                    <div class="extraInfoDiv">
+                        <label for="risk">Risk factors</label>
+                        <textarea type="text" name="risk" id="risk"></textarea>
+                    </div>
+                    <label for="details" class="fs-3 fw-bold">Share your experience on that place</label>
+                    <textarea class="" name="details" id="details" cols="30" rows="10"></textarea>
+                    <div class="extraInfoDiv">
+                        <label for="season">Best season to visit</label>
+                        <input type="text" name="season" id="season">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Publish</button>
+                </form>
+            </div>
+
+            <%- include('../common/_footer.ejs') %>
+                <script src="/js/mapBox.js"></script>
+                <script src="/js/writeReview.js"></script>
+    </body>
+
+    </html>
