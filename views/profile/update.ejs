@@ -1,0 +1,56 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Update info</title>
+    <link rel="stylesheet" href="/css/update.css">
+    <script src="https://cdn.tiny.cloud/1/x6uvlmtjsi6k2x8iyc1lg8nhoczdcubehb1wzkkuzuzde2p2/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="container contentBody">
+                <h1 class="text-center">Update your information</h1>
+                <form enctype="multipart/form-data" class="w-75 m-auto" id="updateProfile" action="#"
+                    onsubmit="return updateProfile();" method="POST">
+                    <input type="text" name="id" value="<%=user.id %>" hidden>
+                    <div class="formOption">
+                        <label class="form-label" for="fullName">First Name: </label>
+                        <input class="form-control" type="text" name="fullName" id="fullName"
+                            value="<%=user.full_name %>" required>
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="hometown">Hometown: </label>
+                        <input class="form-control" type="text" name="hometown" id="hometown"
+                            value="<%=user.hometown %>">
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="country">Country: </label>
+                        <input class="form-control" type="text" name="country" id="country" value="<%=user.country %>">
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="hobby">Hobby: </label>
+                        <input class="form-control" type="text" name="hobby" id="hobby" value="<%=user.hoby %>">
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="birthdate">Birthdate: </label>
+                        <input class="form-control" type="date" name="birthdate" id="birthdate" value="<%=user.birthdate
+                            %>">
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="phone">Phone: </label>
+                        <input class="form-control" type="tel" name="phone" id="phone" value="<%=user.phone %>">
+                    </div>
+                    <div class="formOption">
+                        <label class="form-label" for="proPic">Profile Picture: </label>
+                        <input class="form-control" type="file" name="proPic" id="proPic">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </form>
+            </div>
+
+            <%- include('../common/_footer.ejs') %>
+                <script src="/js/updateProfile.js"></script>
+    </body>
+
+    </html>
