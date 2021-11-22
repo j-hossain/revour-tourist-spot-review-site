@@ -37,6 +37,16 @@ reviewRouter.get('/edit/:id',checkAuthenticated,async (req,res)=>{
     });
 });
 
+reviewRouter.get('/getbyid/:id',async (req,res)=>{
+    await REVIEW.getReview(req.params.id,(err,review)=>{
+        if(err)
+            return res.send(err);
+        else{
+            return res.send(review)
+        }
+    });
+})
+
 reviewRouter.post('/insert',checkAuthenticated,(req,res)=>{
     console.log("creating review");
     db.query("insert into review (title,location) values(?,?)",[req.body.title,req.body.location],(err,result)=>{

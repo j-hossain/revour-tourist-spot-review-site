@@ -59,7 +59,7 @@ authRouter.post('/signup', async (req,res)=>{
             else{
                 sendConfirmationMail(mailInp);
                 let userId = results.insertId;
-                db.query("insert into user_details (id) values (?)",[userId],(err,result)=>{
+                db.query("insert into user_details (user_id) values (?)",[userId],(err,result)=>{
                     if(err)
                         return res.send(err)
                     else
