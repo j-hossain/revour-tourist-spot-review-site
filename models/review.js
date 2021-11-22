@@ -1,5 +1,8 @@
 const db = require('../controllers/dbConnetcors');
-
+const dompurify = require('dompurify');
+const {JSDOM} = require('jsdom');
+const htmlPurify = dompurify(new JSDOM().window);
+// const stripHtml = require('string-strip-html');
 
 let review = {}
 
@@ -26,6 +29,7 @@ review.getReview = async function getReview(id,done){
     };
     ret.id = id;
     await db.query("select * from review where id=?",[id],async (e1,r1)=>{
+
         if(e1)
             return done(e1,false);
         else{
@@ -53,14 +57,14 @@ review.getReview = async function getReview(id,done){
                                 if(e4)
                                     return done(e4,false);
                                 else{
-                                    ret.date = r4[0].post_date;
+                                    ret.date = new Date(r4[0].post_date).toUTCString();
                                     const User = require('./user.js');
                                     await User.getUser(r4[0].user_id,async (e5,user)=>{
                                         if(e5)
                                             return done(e5,false);
                                         else{
                                             ret.user = user;
-                                            await db.query("select * from review_images where id=?",[ret.id],async (e6,r6)=>{
+                                            await db.query("select * from review_images where review_id=?",[ret.id],async (e6,r6)=>{
                                                 if(e6)
                                                     return done(e6,false);
                                                 else{

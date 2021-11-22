@@ -15,16 +15,18 @@ profileRouter.get('/about/:id', checkAuthenticated, async (req,res)=>{
             else{
                 let reviewArray = new Array();
                 let len = reviews.length;
+                if(len==0){
+                    about.reviews = new Array();
+                    return res.render('profile/about',{user:req.user,about:about});
+                }
                 let cnt=0;
                 reviews.forEach(async (review) => {
                     await Review.getReview(review.review_id,(ee,rev)=>{
-                        console.log(rev);
                         reviewArray.push(rev);
                         cnt++;
                         if(cnt==len){
                             about.reviews = reviewArray;
-                            console.log(reviewArray.length);
-                            res.render('profile/about',{user:req.user,about:about});
+                            return res.render('profile/about',{user:req.user,about:about});
                         }
                     });
                 });

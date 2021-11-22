@@ -1,0 +1,80 @@
+#review {
+  padding: 30px 0;
+}
+
+.heading {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 20px;
+  padding: 20px 0;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.date {
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.buttons {
+  padding-bottom: 20px;
+}
+
+.author {
+  font-size: 18px;
+}
+
+.featureImage {
+  width: 100%;
+  height: 500px;
+}
+
+.featureImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detailsArticle {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+}
+
+.details {
+  border-top: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+.details .detailsTitle {
+  width: auto;
+  display: inline-block;
+  padding: 10px;
+  background: rgba(155, 203, 243, 0.226);
+  margin-bottom: 20px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+.gallery .imageBox {
+  height: 250px;
+  width: 250px;
+}
+
+.gallery .imageBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

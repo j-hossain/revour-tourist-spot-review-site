@@ -1,0 +1,98 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Revour - <%= review.title %>
+    </title>
+    <link rel="stylesheet" href="/css/rating.css">
+    <link rel="stylesheet" href="/css/showReview.css">
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="container contentBody">
+                <section id="review">
+                    <div class="heading">
+                        <span class="title">
+                            <%- review.title %>
+                        </span>
+                        <div class="rating">
+                            <% for( let i=0; i < review.location_rating; i++ ) { %>
+                                <span class="fa fa-star checked"></span>
+                                <% } %>
+                                    <% for( let i=0; i < 6-review.location_rating; i++ ) { %>
+                                        <span class="fa fa-star"></span>
+                                        <% } %>
+                        </div>
+                    </div>
+                    <span class="date">
+                        <%= review.date %>
+                    </span>
+                    <div class="buttons">
+                        <% if (user) { %>
+                            <% if (user.id==review.user.id) { %>
+                                <a href="/review/edit/<%= review.id %>" class="btn btn-primary">Edit</a>
+                                <a href="/review/delete/<%= review.id %>" class="btn btn-primary">Delete</a>
+                                <% } else { %>
+                                    <span>Reviewer: </span>
+                                    <a href="/profile/about/<%= review.user.id %> " class="author">
+                                        <%= review.user.full_name %>
+                                    </a>
+                                    <% } %>
+                                        <% } else { %>
+                                            <span>Reviewer: </span>
+                                            <a href="/profile/about/<%= review.user.id %> " class="author">
+                                                <%= review.user.full_name %>
+                                            </a>
+                                            <% } %>
+                    </div>
+                    <div class="featureImage">
+                        <% if (review.images.length>0) { %>
+                            <img src="/uploads/<%= review.images[0] %> " alt="Featured Image">
+                            <% } %>
+                    </div>
+                    <div class="detailsArticle">
+                        <div class="experience">
+                            <div>
+                                <%- review.experience %>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h2 class="detailsTitle">Food Culture</h2>
+                            <div>
+                                <%- review.food_culture %>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h2 class="detailsTitle">Residence Facilities</h2>
+                            <div>
+                                <%- review.residence_availability %>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h2 class="detailsTitle">Risk Factors</h2>
+                            <div>
+                                <%- review.risk_factors %>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h2 class="detailsTitle">Best Season to Visit</h2>
+                            <div>
+                                <%- review.best_season %>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h2 class="detailsTitle">Gallery</h2>
+                            <div class="gallery">
+                                <% if (review.images.length>0){for( let i=0; i < review.images.length; i++ ) { %>
+                                        <div class="imageBox">
+                                            <img src="/uploads/<%= review.images[i] %> " alt="Not Found">
+                                        </div>
+                                        <% }} %>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <%- include('../common/_footer.ejs') %>
+    </body>
+
+    </html>

@@ -4,9 +4,37 @@ const bcrypt = require('bcryptjs');
 const db = require('../controllers/dbConnetcors');
 const passport = require('passport');
 const slugify = require('slugify');
+const REVIEW = require('../models/review');
+const review = require('../models/review');
+const user = require('../models/user');
 
 reviewRouter.get('/write',checkAuthenticated,(req,res)=>{
     res.render('review/write-review',{user:req.user});
+});
+
+reviewRouter.get('/show/:id',async (req,res)=>{
+    await REVIEW.getReview(req.params.id,(err,review)=>{
+        if(err)
+            return res.send(err);
+        else{
+            return res.render('review/show',{user:req.user,review:review});
+        }
+    });
+});
+
+reviewRouter.get('/edit/:id',checkAuthenticated,async (req,res)=>{
+    
+    await REVIEW.getReview(req.params.id,(err,review)=>{
+        if(err)
+            return res.send(err);
+        else{
+            if(review.user.id!=req.user.id){
+                let url = '/review/show/'+req.params.id;
+                return res.redirect(url);
+            }
+            return res.render('review/edit',{user:req.user,review:review});
+        }
+    });
 });
 
 reviewRouter.post('/insert',checkAuthenticated,(req,res)=>{
@@ -18,7 +46,7 @@ reviewRouter.post('/insert',checkAuthenticated,(req,res)=>{
         }
         else{
             let reviewId = result.insertId;
-            db.query("insert into review_posting (review_id,user_id,post_date) values (?,?,?)",[reviewId,req.user.id,Date.now()],(er,rows)=>{
+            db.query("insert into review_posting (review_id,user_id,post_date) values (?,?,?)",[reviewId,req.user.id,Date.now().toLocaleString()],(er,rows)=>{
                 if(err){
                     res.send({status:false,error:err});
                     return;

@@ -67,11 +67,10 @@ app.get('/', async (req,res)=>{
     res.render('home/',{user:req.user});
 });
 app.get('/search', async (req,res)=>{
-    res.render('search/');
+    res.render('search/',{user:req.user});
 });
 app.post("/upload",checkAuthenticated,(req,res)=>{
     let image = req.files.image;
-    // console.log("hello");
     if(image){
         imagePath = Date.now() + image.name;
         let uploadPath =__dirname + '/public/uploads/' + imagePath;
