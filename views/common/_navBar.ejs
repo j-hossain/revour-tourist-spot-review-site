@@ -27,7 +27,7 @@
                             </li>
                             <% }else{ %>
                                 <li><a class="dropdown-item" href="#">My reviews</a></li>
-                                <li><a class="dropdown-item" href="/profile/about">My Info</a></li>
+                                <li><a class="dropdown-item" href="/profile/about/<%= user.id %> ">My Info</a></li>
                                 <li>
                                     <form action="/auth/signout?_method=DELETE" method="POST">
                                         <button type="submit" class="dropdown-item">Sign out</button>

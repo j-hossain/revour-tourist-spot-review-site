@@ -7,15 +7,20 @@
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-            <div class="container contentBody">
-                <form class="authBox" action="/auth/signin" onsubmit="return checkSignIn();" method="post">
-                    <h1>Sign in</h1>
-                    <input name="email" required type="email" id="email" placeholder="Username">
-                    <input name="password" required type="password" id="password" placeholder="Password">
-                    <button type="submit">Sign in</button>
-                </form>
-            </div>
-            <%- include('../common/_footer.ejs') %>
+            <% if(messages.error){ %>
+                <script>alert("<%= messages.error %>");</script>
+
+                <% } %>
+                    <div class="container contentBody">
+                        <form id="signin" class="authBox" action="/auth/signin" method="post">
+                            <h1>Sign in</h1>
+                            <input name="email" required type="email" id="email" placeholder="Username">
+                            <input name="password" required type="password" id="password" placeholder="Password">
+                            <button type="submit">Sign in</button>
+                        </form>
+
+                    </div>
+                    <%- include('../common/_footer.ejs') %>
     </body>
 
     </html>

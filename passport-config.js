@@ -16,7 +16,21 @@ function initialize(passport){
                         password:results[0].pass,
                         confirmed: results[0].confirmed
                     }
-                    return done(null,user);
+                    try{
+                        if(await bcrypt.compare(password,user.password)){
+                            if(user.confirmed=="true"){
+                                return done(null,user);
+                            }
+                            else{
+                                return done(null,false,{message:'please varify your email first'});
+                            }
+                        }else{
+                            return done(null,false,{message:'password did not match'});
+                        }
+                    }
+                    catch(e){
+                        return done(e,false);
+                    }
                 }
                 else{
                     return done(null,false,{message:'No user with the email'});

@@ -1,3 +1,43 @@
 .formOption {
   margin: 20px 0;
 }
+
+#updateProfile {
+  width: 50%;
+}
+.profilePicture {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  width: 200px;
+}
+.profilePicture img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profilePicture:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 25px;
+  background: #fff;
+}
+
+.profilePicture:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 200px;
+  width: 25px;
+  background: #fff;
+}
+
+.updateBody {
+  margin-top: 100px;
+}

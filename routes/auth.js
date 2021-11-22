@@ -20,7 +20,7 @@ authRouter.get('/signin',checkAuthenticated, async (req,res)=>{
 });
 
 authRouter.post('/signin', passport.authenticate('local',{
-    successRedirect: '/profile/about',
+    successRedirect: '/',
     failureRedirect: '/auth/signin',
     failureFlash:true,
 }));
@@ -140,15 +140,15 @@ authRouter.post("/check-login", async (req,res)=>{
                     if(await bcrypt.compare(pass,user.password)){
                         if(user.confirmed=="true"){
                             res.send("ok");
-                            return;
+                            return true;
                         }
                         else{
                             res.send("please varify your email first");
-                            return;
+                            return false;
                         }
                     }else{
                         res.send("password didn't match");
-                        return;
+                        return false;
                     }
                 }
                 catch(e){
@@ -157,7 +157,7 @@ authRouter.post("/check-login", async (req,res)=>{
             }
             else{
                 res.send("No user with the email");
-                return;
+                return false;
             }
         }
     });
@@ -169,7 +169,7 @@ function checkAuthenticated(req, res, next){
         return next();
     }
     else{
-        return res.redirect('/profile/about');
+        return res.redirect('/profile/about/'+req.user.id);
     }
 }
  

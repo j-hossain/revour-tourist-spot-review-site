@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const fileupload = require('express-fileupload');
 
   
 const dotenv = require('dotenv');
@@ -13,7 +14,7 @@ initializePassport(passport);
 
 const flash = require('express-flash');
 const session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
+const MySQLStore = require('express-mysql-session')(session);
 
 const methodOverride = require('method-override');
 
@@ -35,6 +36,7 @@ var sessionStore = new MySQLStore({
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
+app.use(fileupload());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(flash());
@@ -58,6 +60,7 @@ app.use('/profile',profileRouter);
 const modRouter = require('./routes/moderator');
 app.use('/mod',modRouter);
 const reviewRouter = require('./routes/review');
+const e = require('express');
 app.use('/review',reviewRouter);
 
 app.get('/', async (req,res)=>{
@@ -66,6 +69,80 @@ app.get('/', async (req,res)=>{
 app.get('/search', async (req,res)=>{
     res.render('search/');
 });
+app.post("/upload",checkAuthenticated,(req,res)=>{
+    let image = req.files.image;
+    // console.log("hello");
+    if(image){
+        imagePath = Date.now() + image.name;
+        let uploadPath =__dirname + '/public/uploads/' + imagePath;
+        image.mv(uploadPath,(err)=>{
+            if(err)
+                res.send({status:404,err:err});
+
+            else{
+                res.send({status:400,src:imagePath});
+            }
+        })
+    }
+});
+
+app.post("/maps/search",(req,res)=>{
+    let lgn = req.body.lgn;
+    let lat = req.body.lat;
+    db.query("select * from locations where lat=? and lgn=?",[lat,lgn],(err,result)=>{
+        if(err){
+            res.send(err);
+            return;
+        }
+        else{
+            if(result.length>0){
+                let location = {
+                    found: true,
+                    id:result[0].id,
+                    lat:result[0].lat,
+                    lgn:result[0].lgn,
+                    category:result[0].category,
+                    name:result[0].name
+                }
+                res.send(location);
+                return;
+            }
+            else{
+                res.send({found:false});
+            }
+        }
+    });
+});
+
+
+app.post("/maps/add", async (req,res)=>{
+    let category = req.body.category;
+    let name = req.body.name;
+    let lgn = req.body.lgn;
+    let lat = req.body.lat;
+
+    await db.query("insert into locations (lgn,lat,name,category) values(?,?,?,?)",[lgn,lat,name,category],async (err,result)=>{
+        if(err){
+            res.send({status:false,error:err});
+            return;
+        }
+        else{
+            return res.send({status:true,id:result.insertId});
+        }
+    });
+});
+
+
+
+function checkAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else{
+        return res.redirect('/auth/signin');
+    }
+}
+
 
 
 app.listen(3000);

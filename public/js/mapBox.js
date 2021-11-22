@@ -45,3 +45,55 @@ function createMarker(lng,lat){
     marker.addTo(map);
     return marker;
 }
+
+// a location object returned by mapbox
+// {
+//     "id": "place.17679718526840860",
+//     "type": "Feature",
+//     "place_type": [
+//         "place"
+//     ],
+//     "relevance": 1,
+//     "properties": {
+//         "wikidata": "Q1354"
+//     },
+//     "text": "Dhaka",
+//     "place_name": "Dhaka, Dhaka, Bangladesh",
+//     "bbox": [
+//         90.3297348,
+//         23.66812134,
+//         90.51279449,
+//         23.90106392
+//     ],
+//      [longitude,latitude]
+//     "center": [
+//         90.403409,
+//         23.784506
+//     ],
+//     "geometry": {
+//         "type": "Point",
+//         "coordinates": [
+//             90.403409,
+//             23.784506
+//         ]
+//     },
+//     "context": [
+//         {
+//             "id": "district.13645051878840860",
+//             "wikidata": "Q1850485",
+//             "text": "Dhaka"
+//         },
+//         {
+//             "id": "region.9831996884466970",
+//             "wikidata": "Q330158",
+//             "short_code": "BD-C",
+//             "text": "Dhaka"
+//         },
+//         {
+//             "id": "country.10043599301797340",
+//             "wikidata": "Q902",
+//             "short_code": "bd",
+//             "text": "Bangladesh"
+//         }
+//     ]
+// }

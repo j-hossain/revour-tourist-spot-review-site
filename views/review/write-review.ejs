@@ -20,17 +20,18 @@
                         <label for="title">Place name</label>
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" id="title"
                             name="title">
-                            <!-- <option value="1">Hills</option>
-                            <option value="2">Sea beach</option>
-                            <option value="3">Historical</option> -->
+                            <option value="null">Select a place from the marker</option>
                         </select>
                     </div>
                     <div class="extraInfoDiv">
                         <label for="category">Category</label>
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option value="1">Hills</option>
-                            <option value="2">Sea beach</option>
-                            <option value="3">Historical</option>
+                        <select required id="category" class="form-select form-select-lg mb-3"
+                            aria-label=".form-select-lg">
+                            <option value="null">Select a category</option>
+                            <option value="Hills">Hills</option>
+                            <option value="Sea Beach">Sea beach</option>
+                            <option value="Historical">Historical</option>
+                            <option value="Park">Park</option>
                         </select>
                     </div>
                     <div class="extraInfoDiv">
@@ -50,6 +51,26 @@
                     <div class="extraInfoDiv">
                         <label for="season">Best season to visit</label>
                         <input type="text" name="season" id="season">
+                    </div>
+                    <div id="addImages">
+                        <h3>Add some images of that place</h3>
+                        <div id="imagesPreview">
+
+                        </div>
+                        <input type="file" name="image" id="image">
+                        <button class="btn btn-primary" onclick=" return uploadImage(this.form)">Upload</button>
+                    </div>
+                    <div class="extraInfoDiv">
+                        <label for="rating">Rate this place out of 6</label>
+                        <select id="rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                            <option value="null">Select a rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
                     </div>
                     <button class="btn btn-primary" type="submit">Publish</button>
                 </form>
