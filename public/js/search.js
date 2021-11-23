@@ -40,7 +40,7 @@ function createMarker(lng,lat,reviewData){
     let title = document.createElement('span');
     title.innerHTML = reviewData.title;
     let button = document.createElement('button');
-    button.classList.add("btn","btn-primary");
+    button.classList.add("btn","btn-primary","popUpBtn");
     button.innerHTML = "Show all from this location";
     button.onclick = ()=>{
         showReviewsByLocation(reviewData.location);

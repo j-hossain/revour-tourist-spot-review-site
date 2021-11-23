@@ -37,6 +37,7 @@
 
 .mapboxgl-popup {
   max-width: 200px;
+  text-align: center;
 }
 #marker {
   background-image: url("/images/logo/marker.png");
@@ -45,4 +46,11 @@
   width: 50px;
   height: 50px;
   cursor: pointer;
+}
+
+.popUpBtn {
+  font-size: 12px;
+  display: block;
+  margin: 5px auto;
+  padding: 5px;
 }
