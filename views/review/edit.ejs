@@ -10,10 +10,10 @@
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-            <input id="reviewId" type="number" hidden value="<%= review.id %>">
             <div class="container contentBody">
                 <form class="w-75 m-auto reviewForm" id="reviewForm" action="#" onsubmit="return publishReview();"
                     method="POST">
+                    <input id="reviewId" type="number" hidden value="<%= review.id %>">
 
                     <div class="location">
                         <span class="warning">* you cannot change the location information</span>

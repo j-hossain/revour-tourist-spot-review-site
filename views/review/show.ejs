@@ -14,14 +14,14 @@
                         <span class="title">
                             <%- review.title %>
                         </span>
-                        <div class="rating">
-                            <% for( let i=0; i < review.location_rating; i++ ) { %>
-                                <span class="fa fa-star checked"></span>
-                                <% } %>
-                                    <% for( let i=0; i < 6-review.location_rating; i++ ) { %>
-                                        <span class="fa fa-star"></span>
-                                        <% } %>
-                        </div>
+                    </div>
+                    <div class="rating">
+                        <% for( let i=0; i < review.location_rating; i++ ) { %>
+                            <span class="fa fa-star checked"></span>
+                            <% } %>
+                                <% for( let i=0; i < 6-review.location_rating; i++ ) { %>
+                                    <span class="fa fa-star"></span>
+                                    <% } %>
                     </div>
                     <span class="date">
                         <%= review.date %>

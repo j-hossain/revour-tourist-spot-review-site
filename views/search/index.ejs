@@ -1,19 +1,53 @@
 <!-- head is started here -->
 <%- include('../common/_header.ejs') %>
     <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/reviewBoxes.css">
+    <link rel="stylesheet" href="/css/rating.css">
     <title>Revour - tourist spot review site
     </title>
     </head>
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-            <div id="map"></div>
-            <div class="serachBox">
-                <!-- <form class="w-25 mt-5 m-auto" action=""> -->
-                <input class="form-control searchPlace" type="text">
-                <button onclick="searchPlaces()" class="btn btn-danger">Go</button>
-                <!-- </form> -->
+            <div class="contentBody container">
+                <div class="mainBody">
+                    <div class="serchDiv">
+                        <div class="serachBox">
+                            <input class="form-control searchPlace" type="text">
+                            <button onclick="searchPlaces()" class="btn btn-danger">Go</button>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                    <div id="reviews">
+                        <div class="reviewBox">
+                            <div class="previewImage">
+                                <img src="/uploads/1637398137668Screenshot (26) - Copy.png" alt="PreviewImage">
+                            </div>
+                            <div class="previewArticle">
+                                <span class="title">Place name
+                                </span>
+                                <span class="experience">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+                                    vitae quaerat culpa repellendus cupiditate animi voluptatibus eum, asperiores sint
+                                    amet.
+                                </span>
+                                <div class="rating">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <div class="buttons">
+                                    <a href="/review/show/" class="btn btn-primary">Show</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <script src="/js/mapBox.js"></script>
+    </body>
+    <%- include('../common/_footer.ejs') %>
 
-            </html>
+        </html>

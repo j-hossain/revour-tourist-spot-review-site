@@ -118,8 +118,10 @@ function sendConfirmationMail(email){
             transporter.sendMail(mailOptions,(err,info)=>{
                 if(err)
                     console.log(err);
-                else
+                else{
+                    console.log("mail sent");
                     console.log(info);
+                }
             });
         }
     });

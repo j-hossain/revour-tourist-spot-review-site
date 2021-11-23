@@ -70,6 +70,20 @@ reviewRouter.post('/insert',checkAuthenticated,(req,res)=>{
     });
 });
 
+reviewRouter.delete("/deleteimages/:id",checkAuthenticated,(req,res)=>{
+    console.log("deleting images");
+    
+    db.query("delete from review_images where review_id=?",[req.params.id],(err,result)=>{
+        if(err){
+            console.log(err);
+            return res.send({status:false,error:err});
+        }
+        else{
+            return res.send({status:true});
+        }
+    });
+});
+
 reviewRouter.post("/addimages",checkAuthenticated,(req,res)=>{
     console.log("adding images");
     let images = req.body.images.split(",");
@@ -94,6 +108,21 @@ reviewRouter.post("/adddetails",checkAuthenticated,(req,res)=>{
     console.log("adding details");
     db.query("insert into review_details (id,location_rating,food_culture,residence_availability,risk_factors,best_season,experience) values (?,?,?,?,?,?,?)",
     [data.id,data.rating,data.foodCulture,data.residential,data.riskFactors,data.season,data.details],(err,result)=>{
+        if(err){
+            console.log(err)
+            return res.send({status:false,error:err});
+        }
+        else{
+            return res.send({status:true});
+        }
+    }
+    )
+});
+reviewRouter.post("/updatedetails",checkAuthenticated,(req,res)=>{
+    let data = req.body;
+    console.log("updating details");
+    db.query("update review_details  set location_rating=?,food_culture=?,residence_availability=?,risk_factors=?,best_season=?,experience=? where id=?",
+    [data.rating,data.foodCulture,data.residential,data.riskFactors,data.season,data.details,data.id],(err,result)=>{
         if(err){
             console.log(err)
             return res.send({status:false,error:err});
