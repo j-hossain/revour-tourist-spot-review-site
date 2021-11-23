@@ -17,32 +17,39 @@ map.on('click',(e)=>{
         selectedPlace.remove();
     }
     selectedPlace = createMarker(e.lngLat.lng,e.lngLat.lat);
-    selectedPlace.setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
     onMarkerClick(e.lngLat.lng,e.lngLat.lat);
     
 });
+
+function setCenter(){
+    let places = searchPlaces();
+    map.setCenter(places[0].center);
+}
 
 function searchPlaces(){
     let text = document.querySelector('.searchPlace').value.toString();
     text = text.replace(/ /g,"%20");
     console.log(text);
+    let places;
     let url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+text+".json?access_token=pk.eyJ1IjoiamFoaW4iLCJhIjoiY2t1djh1aGRzNjZ0MTJxbWFmaGMzOGQzNiJ9.b-Wd6M4fUQEWwnXQEkq26g";
     let xttp = new XMLHttpRequest();
     xttp.onload = function(){
         console.log(JSON.parse(this.responseText));
-        let places = JSON.parse(this.responseText).features;
+        places = JSON.parse(this.responseText).features;
         console.log(places);
-        for(let i=0;i<places.length;i++)
-            createMarker(places[i].center[0],places[i].center[1]);
     }
-    xttp.open("GET",url,true);
+    xttp.open("GET",url,false);
     xttp.send();
+    return places;
 }
 
 function createMarker(lng,lat){
-    let marker = new mapboxgl.Marker();
+    const el = document.createElement('div');
+    el.id = 'marker';
+    let marker = new mapboxgl.Marker(el);
     marker.setLngLat([lng, lat])
     marker.addTo(map);
+    marker.setPopup(new mapboxgl.Popup({ offset: 25 }).setText("<h1>Hello World!</h1>"))
     return marker;
 }
 

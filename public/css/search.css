@@ -6,7 +6,7 @@
 
 .mainBody {
   display: flex;
-  column-gap: 30px;
+  column-gap: 50px;
   padding: 30px 0;
 }
 
@@ -16,9 +16,33 @@
   flex-direction: column;
   row-gap: 20px;
   padding: 30px 0;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
 }
 
 .serachBox {
   display: flex;
   column-gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.midDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+#marker {
+  background-image: url("/images/logo/marker.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }

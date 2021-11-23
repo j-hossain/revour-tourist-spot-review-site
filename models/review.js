@@ -2,7 +2,7 @@ const db = require('../controllers/dbConnetcors');
 const dompurify = require('dompurify');
 const {JSDOM} = require('jsdom');
 const htmlPurify = dompurify(new JSDOM().window);
-// const stripHtml = require('string-strip-html');
+// import stripHtml from "string-strip-html";
 
 let review = {}
 
@@ -25,7 +25,8 @@ review.getReview = async function getReview(id,done){
         experience:null,
         date:null,
         user:null,
-        images:null
+        images:null,
+        shorten:null
     };
     ret.id = id;
     await db.query("select * from review where id=?",[id],async (e1,r1)=>{
@@ -53,6 +54,9 @@ review.getReview = async function getReview(id,done){
                             ret.risk_factors = r3[0].risk_factors;
                             ret.best_season = r3[0].best_season;
                             ret.experience = r3[0].experience;
+                            ret.shorten = ret.experience;
+                            // ret.shorten = stripHtml(ret.shorten);
+                            ret.shorten = ret.shorten.substring(0,150);
                             await db.query("select * from review_posting where review_id=?",[ret.id],async (e4,r4)=>{
                                 if(e4)
                                     return done(e4,false);

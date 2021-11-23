@@ -134,6 +134,26 @@ reviewRouter.post("/updatedetails",checkAuthenticated,(req,res)=>{
     )
 });
 
+reviewRouter.get('/getall',(req,res)=>{
+    db.query("select * from review",(err,reviewData)=>{
+        if(reviewData.length>0){
+            let reviews = new Array();
+            reviewData.forEach(async (review) => {
+                await REVIEW.getReview(review.id,(ee,rev)=>{
+                    if(ee)
+                        return res.send(ee);
+                    else{
+                        reviews.push(rev);
+                        if(reviews.length==reviewData.length){
+                            return res.send(reviews);
+                        }
+                    }
+                })
+            });
+        }
+    });
+});
+
 function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()){
         return next();

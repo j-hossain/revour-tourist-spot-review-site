@@ -76,15 +76,15 @@
                                     <%= about.reviews[index].title %>
                                 </span>
                                 <span class="experience">
-                                    <%= about.reviews[index].experience %>
+                                    <%- about.reviews[index].shorten %>
                                 </span>
                                 <div class="rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <% for( let i=0; i < about.reviews[index].location_rating; i++ ) { %>
+                                        <span class="fa fa-star checked"></span>
+                                        <% } %>
+                                            <% for( let i=0; i < 6-about.reviews[index].location_rating; i++ ) { %>
+                                                <span class="fa fa-star"></span>
+                                                <% } %>
                                 </div>
                                 <div class="buttons">
                                     <a href="/review/show/<%= about.reviews[index].id %>"
