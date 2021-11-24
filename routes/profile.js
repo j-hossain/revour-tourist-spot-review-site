@@ -6,7 +6,7 @@ const db = require('../controllers/dbConnetcors');
 const flash = require('express-flash');
 const profileRouter = express.Router();
 
-profileRouter.get('/about/:id', checkAuthenticated, async (req,res)=>{
+profileRouter.get('/about/:id', async (req,res)=>{
     await About.getUser(req.params.id,async (err,user)=>{
         let about = user;
         await db.query("select * from review_posting where user_id=?",[about.id],async (e,reviews)=>{

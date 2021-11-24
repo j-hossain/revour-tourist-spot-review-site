@@ -5,6 +5,7 @@ function updateProfile(form){
         let res = xhttp.responseText;
         if(res=="ok"){
             alert("Profile updated");
+            location.assign("/profile/about/"+formData.get("id"));
         }
         else{
             alert(res);

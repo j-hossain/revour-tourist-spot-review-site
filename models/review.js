@@ -2,6 +2,7 @@ const db = require('../controllers/dbConnetcors');
 const dompurify = require('dompurify');
 const {JSDOM} = require('jsdom');
 const htmlPurify = dompurify(new JSDOM().window);
+const QUESTION = require('./question');
 // import stripHtml from "string-strip-html";
 
 let review = {}
@@ -26,7 +27,8 @@ review.getReview = async function getReview(id,done){
         date:null,
         user:null,
         images:null,
-        shorten:null
+        shorten:null,
+        questions:null
     };
     ret.id = id;
     await db.query("select * from review where id=?",[id],async (e1,r1)=>{
@@ -77,7 +79,14 @@ review.getReview = async function getReview(id,done){
                                                         images.push(r6[i].src);
                                                     }
                                                     ret.images = images;
-                                                    return done(null,ret);
+                                                    await QUESTION.getReviewQuestion(ret.id,(e7,r7)=>{
+                                                        if(e7)
+                                                            return done(e7,false);
+                                                        else{
+                                                            ret.questions=r7;
+                                                            return done(null,ret);
+                                                        }
+                                                    })
                                                 }
                                             });
                                         }

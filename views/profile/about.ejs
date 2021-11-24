@@ -1,6 +1,6 @@
 <!-- head is started here -->
 <%- include('../common/_header.ejs') %>
-    <title>About - <%= user.username %>
+    <title>About - <%= about.username %>
     </title>
     <link rel="stylesheet" href="/css/profileAbout.css">
     <link rel="stylesheet" href="/css/rating.css">
@@ -19,9 +19,12 @@
                             <h3 class="name">
                                 <%= about.full_name %>
                             </h3>
-                            <% if(user.id==about.id){ %>
-                                <a href="/profile/update/<%= about.id %> " class="btn btn-primary">Update Profile</a>
-                                <% } %>
+                            <% if (user) { %>
+                                <% if(user.id==about.id){ %>
+                                    <a href="/profile/update/<%= about.id %> " class="btn btn-primary">Update
+                                        Profile</a>
+                                    <% } %>
+                                        <% } %>
                         </div>
                     </div>
                     <div class="moreInfo">
@@ -89,12 +92,14 @@
                                 <div class="buttons">
                                     <a href="/review/show/<%= about.reviews[index].id %>"
                                         class="btn btn-primary">Show</a>
-                                    <% if (user.id==about.id) { %>
-                                        <a href="/review/edit/<%= about.reviews[index].id %>"
-                                            class="btn btn-primary">Edit</a>
-                                        <a href="/review/delete/<%= about.reviews[index].id %>"
-                                            class="btn btn-primary">Delete</a>
-                                        <% } %>
+                                    <% if (user) { %>
+                                        <% if (user.id==about.id) { %>
+                                            <a href="/review/edit/<%= about.reviews[index].id %>"
+                                                class="btn btn-primary">Edit</a>
+                                            <a href="/review/delete/<%= about.reviews[index].id %>"
+                                                class="btn btn-primary">Delete</a>
+                                            <% } %>
+                                                <% } %>
                                 </div>
                             </div>
                         </div>

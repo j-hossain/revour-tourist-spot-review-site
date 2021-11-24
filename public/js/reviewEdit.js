@@ -101,6 +101,7 @@ function publishReview(){
         let res = JSON.parse(updateDetails.responseText);
         if(res.status){
             alert("The post has been updated");
+            location.assign("/review/show/"+reviewId);
         }
         else{
             alert(res.error);

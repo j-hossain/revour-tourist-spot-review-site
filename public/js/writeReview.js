@@ -158,6 +158,7 @@ function publishReview(){
         let res = JSON.parse(insertDetails.responseText);
         if(res.status){
             alert("The post has been published");
+            location.assign("/review/show/"+reviewId);
         }
         else{
             alert(res.error);

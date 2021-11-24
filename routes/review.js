@@ -56,7 +56,7 @@ reviewRouter.post('/insert',checkAuthenticated,(req,res)=>{
         }
         else{
             let reviewId = result.insertId;
-            db.query("insert into review_posting (review_id,user_id,post_date) values (?,?,?)",[reviewId,req.user.id,Date.now().toLocaleString()],(er,rows)=>{
+            db.query("insert into review_posting (review_id,user_id,post_date) values (?,?,?)",[reviewId,req.user.id,new Date(Date.now())],(er,rows)=>{
                 if(err){
                     res.send({status:false,error:err});
                     return;

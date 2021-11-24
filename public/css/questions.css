@@ -1,0 +1,53 @@
+.questionBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 20px 0;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+}
+
+.questionDiv {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.questionDiv .profile {
+  padding: 20px;
+  background: rgba(155, 203, 243, 0.226);
+}
+
+.questionDiv .profilePicture {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.questionDiv .profilePicture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.questionDiv .text {
+  padding: 20px;
+}
+
+.questionForm {
+  padding: 20px 0;
+  margin-top: 30px;
+  border-top: 1px solid #ddd;
+}
+
+.questionForm .questionArea {
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  height: 200px;
+  border: none;
+  border: 2px solid #ddd;
+}
