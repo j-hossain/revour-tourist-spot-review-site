@@ -17,4 +17,19 @@ questionRouter.post('/ask',(req,res)=>{
     })
 });
 
+questionRouter.post('/answer',(req,res)=>{
+    let aData = req.body;
+    aData.postDate = new Date(Date.now());
+    db.query("insert into answers (question_id,user_id,answer,post_date) values(?,?,?,?)",
+    [aData.question_id,aData.user_id,aData.answer,aData.postDate],(err,result)=>{
+        if(err){
+            return res.send({status:false,error:err});
+        }
+        else{
+            aData.id = result.insertId;
+            return res.send({status:true,answer:aData});
+        }
+    })
+});
+
 module.exports = questionRouter;

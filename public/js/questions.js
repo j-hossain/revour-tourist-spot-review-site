@@ -4,7 +4,7 @@ function postQuestion(form){
     postQ.onload = function(){
         let res = JSON.parse(postQ.responseText)
         if(res.status){
-            createQuestionDiv(res.question);
+            location.reload();
         }
         else{
             alert(res.error.toString());
@@ -15,6 +15,20 @@ function postQuestion(form){
     return false;
 }
 
-function createQuestionDiv(questionData){
-    location.reload();
+
+function postAnswer(form){
+    let answerData = new FormData(form);
+    let postA = new XMLHttpRequest();
+    postA.onload = function(){
+        let res = JSON.parse(postA.responseText)
+        if(res.status){
+            location.reload();
+        }
+        else{
+            alert(res.error.toString());
+        }
+    }
+    postA.open("POST","/question/answer",true);
+    postA.send(answerData);
+    return false;
 }

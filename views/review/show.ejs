@@ -97,17 +97,55 @@
                     <div class="questionBox">
                         <% if (review.questions.length>0) { %>
                             <% for( let i=0; i < review.questions.length; i++ ) { %>
-                                <div class="questionDiv">
-                                    <a href="/profile/about/<%= review.questions[i].user.id %>" class="profile"
-                                        title="<%= review.questions[i].user.full_name %>">
-                                        <div class="profilePicture">
-                                            <img src="/uploads/<%= review.questions[i].user.profile_picture%>" alt="">
+                                <div class="questionPanel">
+                                    <div class="questionDiv">
+                                        <a href="/profile/about/<%= review.questions[i].user.id %>" class="profile"
+                                            title="<%= review.questions[i].user.full_name %>">
+                                            <div class="profilePicture">
+                                                <img src="/uploads/<%= review.questions[i].user.profile_picture%>"
+                                                    alt="">
+                                            </div>
+                                        </a>
+                                        <div class="text">
+                                            <span>
+                                                <%= review.questions[i].question %>
+                                            </span>
                                         </div>
-                                    </a>
-                                    <div class="text">
-                                        <span>
-                                            <%= review.questions[i].question %>
-                                        </span>
+                                    </div>
+
+                                    <div class="answerDiv">
+                                        <% if (review.questions[i].answered) { %>
+                                            <div class="answer">
+                                                <div class="text">
+                                                    <span>
+                                                        <%= review.questions[i].answers[0].text %>
+                                                    </span>
+                                                </div>
+                                                <a href="/profile/about/<%= review.user.id %>" class="profile"
+                                                    title="<%= review.user.full_name %>">
+                                                    <div class="profilePicture">
+                                                        <img src="/uploads/<%= review.user.profile_picture%>" alt="">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <% } else { %>
+                                                <% if (user) { %>
+                                                    <% if (review.user.id==user.id) { %>
+                                                        <form action="#" method="POST">
+                                                            <input type="text" name="user_id" value="<%= user.id %>"
+                                                                hidden>
+                                                            <input type="text" name="question_id"
+                                                                value="<%= review.questions[i].id %>" hidden>
+                                                            <textarea class="answerArea" name="answer" id="answer"
+                                                                cols="30" rows="10"></textarea>
+                                                            <div class="bt">
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    onclick="return postAnswer(this.form);">Answer</button>
+                                                            </div>
+                                                        </form>
+                                                        <% } %>
+                                                            <% } %>
+                                                                <% } %>
                                     </div>
                                 </div>
                                 <% } %>

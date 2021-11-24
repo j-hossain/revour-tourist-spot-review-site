@@ -14,6 +14,7 @@ const map = new mapboxgl.Map({
 function setCenter(){
     let places = searchPlaces();
     map.setCenter(places[0].center);
+    map.setZoom(9);
 }
 
 function searchPlaces(){
