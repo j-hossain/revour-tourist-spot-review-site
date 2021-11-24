@@ -2,9 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fileupload = require('express-fileupload');
-const rewardController = require('./controllers/reward');
 
-  
+
 const dotenv = require('dotenv');
 dotenv.config({path:"./common.env"})
 
@@ -34,6 +33,7 @@ var sessionStore = new MySQLStore({
         }
     }
 }, db);
+const rewardController = require('./controllers/reward');
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
