@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fileupload = require('express-fileupload');
+const rewardController = require('./controllers/reward');
 
   
 const dotenv = require('dotenv');
@@ -57,8 +58,8 @@ const authRouter = require('./routes/auth');
 app.use('/auth',authRouter);
 const profileRouter = require('./routes/profile');
 app.use('/profile',profileRouter);
-const modRouter = require('./routes/moderator');
-app.use('/mod',modRouter);
+const controlRouter = require('./routes/control_panel');
+app.use('/control-panel',controlRouter);
 const reviewRouter = require('./routes/review');
 app.use('/review',reviewRouter);
 const questionRouter = require('./routes/question');
@@ -116,7 +117,7 @@ app.post("/maps/search",(req,res)=>{
 });
 
 
-app.post("/maps/add", async (req,res)=>{
+app.post("/maps/add",checkAuthenticated, async (req,res)=>{
     let category = req.body.category;
     let name = req.body.name;
     let lgn = req.body.lgn;
@@ -128,6 +129,7 @@ app.post("/maps/add", async (req,res)=>{
             return;
         }
         else{
+            // rewardController.uniqueLocationReward(req.user.id);
             return res.send({status:true,id:result.insertId});
         }
     });

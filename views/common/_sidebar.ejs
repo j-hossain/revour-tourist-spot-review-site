@@ -1,0 +1,16 @@
+<div class="sideBar">
+    <div class="option">
+        <a href="/control-panel/">Control Panel Home</a>
+    </div>
+    <div class="option">
+        <a href="/control-panel/redeem-requests">Redeem Requests</a>
+    </div>
+    <div class="option">
+        <a href="/control-panel/reported-reviews">Reported Reviews</a>
+    </div>
+    <% if (user.role=="admin" ) { %>
+        <div class="option">
+            <a href="/control-panel/moderators">Moderators</a>
+        </div>
+        <% } %>
+</div>

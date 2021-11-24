@@ -16,7 +16,11 @@
                 <li class="nav-item dropdown mb-3 mb-lg-0">
                     <a class="nav-link dropdown-toggle text-info" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile
+                        <% if (typeof user==='undefined' ) { %>
+                            Profile
+                            <% } else { %>
+                                <%= user.username %>
+                                    <% } %>
                     </a>
                     <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
                         <% if(typeof user==='undefined' ){ %>
@@ -26,14 +30,18 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <% }else{ %>
-                                <li><a class="dropdown-item" href="#">My reviews</a></li>
-                                <li><a class="dropdown-item" href="/profile/about/<%= user.id %> ">My Info</a></li>
-                                <li>
-                                    <form action="/auth/signout?_method=DELETE" method="POST">
-                                        <button type="submit" class="dropdown-item">Sign out</button>
-                                    </form>
-                                </li>
-                                <% } %>
+                                <% if (user.role=="mod" || user.role=="admin" ) { %>
+                                    <li><a class="dropdown-item" href="/control-panel/">Control Panel</a></li>
+                                    <% } %>
+                                        <li><a class="dropdown-item" href="/profile/rewards">My rewards</a></li>
+                                        <li><a class="dropdown-item" href="/profile/about/<%= user.id %> ">My Info</a>
+                                        </li>
+                                        <li>
+                                            <form action="/auth/signout?_method=DELETE" method="POST">
+                                                <button type="submit" class="dropdown-item">Sign out</button>
+                                            </form>
+                                        </li>
+                                        <% } %>
                     </ul>
                 </li>
             </ul>

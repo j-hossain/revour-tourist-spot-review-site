@@ -1,0 +1,22 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="/css/controlPanelSideBar.css">
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="contentBody d-flex">
+                <%- include('../common/_sidebar.ejs') %>
+                    <div class="controlBody w-100">
+                        <h1 class="text-center mt-5">You have the<% if (user.role=="mod" ) { %>
+                                Moderator
+                                <% } else if (user.role=="admin" ) { %>
+                                    Admin
+                                    <% } %> controls' access</h1>
+                    </div>
+            </div>
+            <%- include('../common/_footer.ejs') %>
+    </body>
+
+    </html>

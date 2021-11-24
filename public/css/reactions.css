@@ -1,0 +1,21 @@
+.reactions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.reactions .react {
+  text-align: center;
+  padding: 20px;
+  border-radius: 0;
+  background: #ddd;
+  border: 1px solid #fff;
+}
+.reactions .react:hover {
+  color: black;
+}
+
+.reactions .react.checked {
+  background: rgba(155, 203, 243, 0.226);
+  color: #000;
+}

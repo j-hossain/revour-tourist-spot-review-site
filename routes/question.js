@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../controllers/dbConnetcors');
 const questionRouter = express.Router();
+const rewardController = require('../controllers/reward');
 
 questionRouter.post('/ask',(req,res)=>{
     let qData = req.body;
@@ -27,6 +28,7 @@ questionRouter.post('/answer',(req,res)=>{
         }
         else{
             aData.id = result.insertId;
+            // rewardController.answerReward(aData.user_id);
             return res.send({status:true,answer:aData});
         }
     })

@@ -19,6 +19,7 @@ a {
 .contentBody {
   margin-bottom: 30px;
   min-height: 75vh;
+  position: relative;
 }
 
 /* styling navbar starts */

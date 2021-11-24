@@ -7,6 +7,7 @@ const slugify = require('slugify');
 const REVIEW = require('../models/review');
 const review = require('../models/review');
 const user = require('../models/user');
+const rewardController = require('../controllers/reward');
 
 reviewRouter.get('/write',checkAuthenticated,(req,res)=>{
     res.render('review/write-review',{user:req.user});
@@ -150,6 +151,28 @@ reviewRouter.get('/getall',(req,res)=>{
                     }
                 })
             });
+        }
+    });
+});
+
+reviewRouter.post('/react/tick/:review/:user',checkAuthenticated,(req,res)=>{
+    db.query("insert into ticks (review_id,user_id,pTime) values(?,?,?)",
+    [req.params.review,req.params.user,new Date(Date.now())],(err,result)=>{
+        if(err)
+            return res.send({status:false,error:err});
+        else{
+            rewardController.tickReward(req.params.review);
+            return res.send({status:true});
+        }
+    });
+});
+reviewRouter.post('/react/report/:review/:user',checkAuthenticated,(req,res)=>{
+    db.query("insert into reports (review_id,user_id,pTime) values(?,?,?)",
+    [req.params.review,req.params.user,new Date(Date.now())],(err,result)=>{
+        if(err)
+            return res.send({status:false,error:err});
+        else{
+            return res.send({status:true});
         }
     });
 });

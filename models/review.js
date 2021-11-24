@@ -28,7 +28,11 @@ review.getReview = async function getReview(id,done){
         user:null,
         images:null,
         shorten:null,
-        questions:null
+        questions:null,
+        ticks:null,
+        tickMap:null,
+        reports:null,
+        reportMap:null
     };
     ret.id = id;
     await db.query("select * from review where id=?",[id],async (e1,r1)=>{
@@ -84,7 +88,31 @@ review.getReview = async function getReview(id,done){
                                                             return done(e7,false);
                                                         else{
                                                             ret.questions=r7;
-                                                            return done(null,ret);
+                                                            db.query("select * from ticks where review_id=?",[ret.id],(e8,r8)=>{
+                                                                if(e8)
+                                                                    return done(e8,false);
+                                                                else{
+                                                                    let tickMap = new Map();
+                                                                    for(let i=0;i<r8.length;i++){
+                                                                        tickMap.set(r8[i].user_id,1);
+                                                                    }
+                                                                    ret.ticks = tickMap.size;
+                                                                    ret.tickMap = tickMap;
+                                                                    db.query("select * from reports where review_id=?",[ret.id],(e9,r9)=>{
+                                                                        if(e9)
+                                                                            return done(e9,false);
+                                                                        else{
+                                                                            let reportMap = new Map();
+                                                                            for(let i=0;i<r9.length;i++){
+                                                                                reportMap.set(r8[i].user_id,1);
+                                                                            }
+                                                                            ret.reports = reportMap.size;
+                                                                            ret.reportMap = reportMap;
+                                                                            return done(null,ret);
+                                                                        }
+                                                                    });
+                                                                }
+                                                            });
                                                         }
                                                     })
                                                 }
