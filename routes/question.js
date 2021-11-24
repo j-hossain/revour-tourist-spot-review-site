@@ -28,7 +28,7 @@ questionRouter.post('/answer',(req,res)=>{
         }
         else{
             aData.id = result.insertId;
-            // rewardController.answerReward(aData.user_id);
+            rewardController.answerReward(aData.user_id);
             return res.send({status:true,answer:aData});
         }
     })

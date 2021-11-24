@@ -129,7 +129,7 @@ app.post("/maps/add",checkAuthenticated, async (req,res)=>{
             return;
         }
         else{
-            // rewardController.uniqueLocationReward(req.user.id);
+            rewardController.uniqueLocationReward(req.user.id);
             return res.send({status:true,id:result.insertId});
         }
     });
