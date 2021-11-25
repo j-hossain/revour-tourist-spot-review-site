@@ -1,0 +1,56 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Revour - Your rewards</title>
+    <link rel="stylesheet" href="/css/rewardsPage.css">
+    <link rel="stylesheet" href="/css/redeemRequest.css">
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="container contentBody">
+                <div class="pointStatus">
+                    <h3>Your Current Point is</h3>
+                    <span class="point" id="currentPoint" data-point="<%= point %>">
+                        <%= point %>
+                    </span>
+                </div>
+                <div class="redeemPanel">
+                    <div class="redeemRequestForm">
+                        <h3>Request a redeem with your available points</h3>
+                        <form action="#" method="POST">
+                            <input class="form-control" type="text" name="redeem_point" id="redeem_point">
+                            <button class="btn btn-primary" type="submit"
+                                onclick="return sendRedeemRequest(this.form)">Request</button>
+                        </form>
+                    </div>
+                    <div class="redeemRequest">
+                        <div class="FilterButtons">
+                            <div class="button">
+                                <button onclick="showAll('true')" class="btn btn-primary">Show All</button>
+                            </div>
+                            <div class="button">
+                                <button onclick="showAll('pending')" class="btn btn-primary">Pending</button>
+                            </div>
+                            <div class="button">
+                                <button onclick="showAll('accepted')" class="btn btn-primary">Accepted</button>
+                            </div>
+                            <div class="button">
+                                <button onclick="showAll('completed')" class="btn btn-primary">Completed</button>
+                            </div>
+                        </div>
+                        <div id="requestList">
+                            <div class="requestRow heading">
+                                <div class="point reqCol"><span>Point</span></div>
+                                <div class="status reqCol"><span>Status</span></div>
+                                <div class="amount reqCol"><span>Amount</span></div>
+                                <div class="action reqCol"><span>Action</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include('../common/_footer.ejs') %>
+                <script src="/js/rewardsPage.js"></script>
+    </body>
+
+    </html>

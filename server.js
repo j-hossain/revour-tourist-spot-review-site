@@ -64,6 +64,8 @@ const reviewRouter = require('./routes/review');
 app.use('/review',reviewRouter);
 const questionRouter = require('./routes/question');
 app.use('/question',questionRouter);
+const redeemRouter = require('./routes/redeem');
+app.use('/redeem',redeemRouter);
 
 
 app.get('/', async (req,res)=>{

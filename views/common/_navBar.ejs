@@ -34,7 +34,8 @@
                                     <li><a class="dropdown-item" href="/control-panel/">Control Panel</a></li>
                                     <% } %>
                                         <li><a class="dropdown-item" href="/profile/rewards">My rewards</a></li>
-                                        <li><a class="dropdown-item" href="/profile/about/<%= user.id %> ">My Info</a>
+                                        <li><a data-userid="<%= user.id %>" id="userID" class="dropdown-item"
+                                                href="/profile/about/<%= user.id %>">My Info</a>
                                         </li>
                                         <li>
                                             <form action="/auth/signout?_method=DELETE" method="POST">

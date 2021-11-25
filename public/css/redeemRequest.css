@@ -1,0 +1,8 @@
+.redeemRequest .FilterButtons {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}

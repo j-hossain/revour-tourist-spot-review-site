@@ -4,6 +4,7 @@ const About = require('../models/user');
 const Review = require('../models/review');
 const db = require('../controllers/dbConnetcors');
 const flash = require('express-flash');
+const user = require('../models/user');
 const profileRouter = express.Router();
 
 profileRouter.get('/about/:id', async (req,res)=>{
@@ -96,10 +97,18 @@ profileRouter.post('/update',checkAuthenticated, async (req,res)=>{
             }
         }
     });
-
-    
-    
 });
+
+profileRouter.get('/rewards',checkAuthenticated,(req,res)=>{
+    db.query("select * from user_details where user_id=?",[req.user.id],(err,result)=>{
+        if(err)
+            return res.send(err);
+        else{
+            let point = result[0].points;
+            return res.render('profile/rewards',{user:req.user,point:point})
+        }
+    });
+})
 
 async function userNameAvailable(username){
     await db.query("select * from user_main where username=?",[username],(err,result)=>{

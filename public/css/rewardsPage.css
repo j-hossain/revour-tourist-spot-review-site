@@ -1,0 +1,66 @@
+.pointStatus {
+  margin: 50px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.pointStatus .point {
+  font-size: 76px;
+}
+
+.redeemPanel {
+  display: flex;
+}
+
+.redeemRequestForm {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #ddd;
+  text-align: center;
+  padding: 70px 30px;
+}
+
+.redeemRequestForm form {
+  margin: 20px 0;
+  display: flex;
+  column-gap: 20px;
+}
+
+.redeemRequest {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+#requestList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+}
+
+#requestList .requestRow {
+  width: 100%;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  grid-template-columns: 25% 25% 25% 25%;
+  border-bottom: 1px solid #ddd;
+}
+
+#requestList .requestRow.heading div {
+  background: rgba(155, 203, 243, 0.226);
+}
+
+#requestList .requestRow .reqCol {
+  padding: 10px 0;
+  border-right: 1px solid #ddd;
+}
+
+#requestList .requestRow .reqCol:last-child {
+  border-right: none;
+}
