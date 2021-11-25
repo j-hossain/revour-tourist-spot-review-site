@@ -175,7 +175,8 @@ function createReview(reviewData,createMark){
     showBtn.innerHTML = "Show";
     let category = document.createElement('a');
     category.classList.add("category");
-    category.href = "/review/show/"+reviewData.location.category;
+    // category.href = "/review/category/"+reviewData.location.category;
+    category.href = "#";
     category.innerHTML = reviewData.location.category
     
     previewImage.appendChild(image);

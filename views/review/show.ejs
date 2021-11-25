@@ -32,7 +32,7 @@
                     </span>
                     <div class="buttons">
                         <% if (user) { %>
-                            <% if (user.id==review.user.id) { %>
+                            <% if (user.id==review.user.id || user.role=="mod" || user.role=="admin" ) { %>
                                 <a href="/review/edit/<%= review.id %>" class="btn btn-primary">Edit</a>
                                 <a href="/review/delete/<%= review.id %>" class="btn btn-primary">Delete</a>
                                 <% } else { %>

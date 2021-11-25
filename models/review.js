@@ -104,7 +104,7 @@ review.getReview = async function getReview(id,done){
                                                                         else{
                                                                             let reportMap = new Map();
                                                                             for(let i=0;i<r9.length;i++){
-                                                                                reportMap.set(r8[i].user_id,1);
+                                                                                reportMap.set(r9[i].user_id,1);
                                                                             }
                                                                             ret.reports = reportMap.size;
                                                                             ret.reportMap = reportMap;

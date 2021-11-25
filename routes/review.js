@@ -177,6 +177,53 @@ reviewRouter.post('/react/report/:review/:user',checkAuthenticated,(req,res)=>{
     });
 });
 
+reviewRouter.get('/delete/:id',(req,res)=>{
+    let reviewId = req.params.id;
+    db.query("delete from review where id=?",[reviewId],(e1,r1)=>{
+        if(e1)
+            return res.send(e1);
+        else{
+            db.query("delete from review_posting where review_id=?",[reviewId],(e2,r2)=>{
+                if(e2)
+                    return res.send(e2);
+                else{
+                    db.query("delete from review_details where id=?",[reviewId],(e3,r3)=>{
+                        if(e3)
+                            return res.send(e3);    
+                        else{
+                            db.query("delete from reports where review_id=?",[reviewId],(e4,r4)=>{
+                                if(e4)
+                                    return res.send(e4);
+                                else{
+                                    db.query("delete from review_images where review_id=?",[reviewId],(e5,r5)=>{
+                                        if(e5)
+                                            return res.send(e5);
+                                        else{
+                                            db.query("delete from questions where review_id=?",[reviewId],(e6,r6)=>{
+                                                if(e6)
+                                                    return res.send(e6);
+                                                else{
+                                                    db.query("delete from ticks where review_id=?",[reviewId],(e7,r7)=>{
+                                                        if(e1)
+                                                            return res.send(e1);
+                                                        else{
+                                                            return res.redirect('/');
+                                                        }
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
+});
+
 function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()){
         return next();

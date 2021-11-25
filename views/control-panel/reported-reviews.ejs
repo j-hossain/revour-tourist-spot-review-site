@@ -2,6 +2,7 @@
 <%- include('../common/_header.ejs') %>
     <title>Control Panel</title>
     <link rel="stylesheet" href="/css/controlPanelSideBar.css">
+    <link rel="stylesheet" href="/css/modReportControl.css">
     </head>
 
     <body>
@@ -10,6 +11,21 @@
                 <%- include('../common/_sidebar.ejs') %>
                     <div class="controlBody w-100">
                         <h1 class="text-center">Reported Reviews</h1>
+                        <div class="reportList">
+                            <% for( let i=0; i < reports.length; i++ ) { %>
+                                <div class="reportBox">
+                                    <div class="review repCol">
+                                        <a href="/review/show/<%= reports[i].review_id %> ">Review link</a>
+                                    </div>
+                                    <div class="reportCount repCol">
+                                        <span>Total reports: </span>
+                                        <span>
+                                            <%= reports[i].total_reports %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
                     </div>
             </div>
             <%- include('../common/_footer.ejs') %>
