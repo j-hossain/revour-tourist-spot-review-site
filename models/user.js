@@ -7,7 +7,7 @@ user.columns = ["id","username","full_name","email","pass","confirmed","role","p
 user.val = {};
 user.getUser = async function getUser(id,done){
     let ret={};
-    await db.query('SELECT * FROM user_main left join user_details on user_main.id=user_details.user_id  where user_main.id=?',[id], async (err,result)=>{
+    await db.query('SELECT * FROM user_main left join user_details on user_main.id=user_details.user_id  where user_main.id=?',[id],async (err,result)=>{
         if(err){
             console.log(err);
             if(done)

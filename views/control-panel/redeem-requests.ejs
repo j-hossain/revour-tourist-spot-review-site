@@ -2,6 +2,7 @@
 <%- include('../common/_header.ejs') %>
     <title>Control Panel</title>
     <link rel="stylesheet" href="/css/controlPanelSideBar.css">
+    <link rel="stylesheet" href="/css/modRedeem.css">
     </head>
 
     <body>
@@ -10,9 +11,39 @@
                 <%- include('../common/_sidebar.ejs') %>
                     <div class="controlBody w-100">
                         <h1 class="text-center">Redeem Requests</h1>
+                        <div class="redeemRequest">
+                            <div class="FilterButtons">
+                                <div class="button">
+                                    <button id="true" onclick="showAll('true')" class="btn btn-primary">Show
+                                        All</button>
+                                </div>
+                                <div class="button">
+                                    <button id="pending" onclick="showAll('pending')"
+                                        class="btn btn-primary">Pending</button>
+                                </div>
+                                <div class="button">
+                                    <button id="accepted" onclick="showAll('accepted')"
+                                        class="btn btn-primary">Accepted</button>
+                                </div>
+                                <div class="button">
+                                    <button id="completed" onclick="showAll('completed')"
+                                        class="btn btn-primary">Completed</button>
+                                </div>
+                            </div>
+                            <div id="requestList">
+                                <div class="requestRow heading">
+                                    <div class="user reqCol"><span>User</span></div>
+                                    <div class="point reqCol"><span>Point</span></div>
+                                    <div class="status reqCol"><span>Status</span></div>
+                                    <div class="amount reqCol"><span>Amount</span></div>
+                                    <div class="action reqCol"><span>Action</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
             </div>
             <%- include('../common/_footer.ejs') %>
+                <script src="/js/modRedeem.js"></script>
     </body>
 
     </html>

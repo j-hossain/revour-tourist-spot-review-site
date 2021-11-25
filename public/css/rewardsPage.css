@@ -64,3 +64,16 @@
 #requestList .requestRow .reqCol:last-child {
   border-right: none;
 }
+
+.redeemRequest .FilterButtons {
+  margin-left: auto;
+  display: flex;
+  height: 50px;
+  width: 70%;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}
+
+.redeemRequest .FilterButtons. {
+}

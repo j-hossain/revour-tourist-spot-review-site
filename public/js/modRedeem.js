@@ -1,39 +1,8 @@
-let profileInfo = document.getElementById("userID");
-let userId = profileInfo.dataset.userid;
 let allRedeemRequests = new Array();
 let ration = 1
-fetchRedeemRequests(userId);
+fetchRedeemRequests();
 
-function sendRedeemRequest(form){
-    let redeemRequestData = new FormData(form);
-    redeemRequestData.set('user_id',userId);
-    let requestedPoint = redeemRequestData.get('redeem_point');
-    let available = document.getElementById('currentPoint').dataset.point;
-    if(requestedPoint<100){
-        alert("Minimum redeem request is 100")
-    }
-    else if(requestedPoint>available){
-        alert("Not enough points");
-    }
-    else{
-        let redeemReuest = new XMLHttpRequest();
-        redeemReuest.onload = function(){
-            let res = JSON.parse(redeemReuest.responseText);
-            if(res.status==false){
-                alert(res.error);
-            }
-            else{
-                alert("Request submitted");
-                location.reload();
-            }
-        }
-        redeemReuest.open('POST','/redeem/request');
-        redeemReuest.send(redeemRequestData);
-    }
-    return false;
-}
-
-function fetchRedeemRequests(userId){
+function fetchRedeemRequests(){
     let redeemReuest = new XMLHttpRequest();
     redeemReuest.onload = function(){
         let res = JSON.parse(redeemReuest.responseText);
@@ -42,14 +11,15 @@ function fetchRedeemRequests(userId){
         }
         else{
             allRedeemRequests = res.requests;
-            showAll("true");
+            showAll("pending");
         }
     }
-    redeemReuest.open('GET','/redeem/user-requests/'+userId);
+    redeemReuest.open('GET','/redeem/all-requests');
     redeemReuest.send();
 }
 
 function showAll(status){
+    console.log(allRedeemRequests);
     activateButtons(status);
     let parentDiv = document.getElementById("requestList");
     parentDiv.innerHTML = "";
@@ -77,10 +47,12 @@ function getHeading(){
     let requestRow = document.createElement('div');
     requestRow.classList.add("requestRow");
     requestRow.classList.add("heading");
+    let userCol = createColumn("user",createSpan("User"));
     let pointCol = createColumn("point",createSpan("Point"));
     let statusCol = createColumn("status",createSpan("Status"));
     let amountCol = createColumn("amount",createSpan("Amount"));
     let actionCol = createColumn("action",createSpan("Action"));
+    requestRow.appendChild(userCol);
     requestRow.appendChild(pointCol);
     requestRow.appendChild(statusCol);
     requestRow.appendChild(amountCol);
@@ -91,15 +63,24 @@ function getHeading(){
 function createRow(rr){
     let requestRow = document.createElement('div');
     requestRow.classList.add("requestRow");
+    let userCol = createColumn("point",createProfileLink(rr.user.id,rr.user.username));
     let pointCol = createColumn("point",createSpan(rr.req_point));
     let statusCol = createColumn("status",createSpan(rr.status));
     let amountCol = createColumn("amount",createSpan(rr.req_point*ration));
     let actionCol = createActionCol(rr);
+    requestRow.appendChild(userCol);
     requestRow.appendChild(pointCol);
     requestRow.appendChild(statusCol);
     requestRow.appendChild(amountCol);
     requestRow.appendChild(actionCol);
     return requestRow;
+}
+
+function createProfileLink(userId, username){
+    let link = document.createElement('a');
+    link.href="/profile/about/"+userId;
+    link.innerHTML = username;
+    return link;
 }
 
 function createColumn(className,inner){
@@ -118,67 +99,45 @@ function createSpan(text){
 function createActionCol(redeem){
     let status = redeem.status;
     if(status=="pending"){
+        let form = document.createElement('form');
+        let trxNumInp = document.createElement('input');
+        trxNumInp.placeholder = "transaction number"
         let button = document.createElement('button');
         button.classList.add("btn","btn-primary");
-        button.innerHTML = "Cancel";
+        button.innerHTML = "Send";
         button.dataset.reqid = redeem.id;
         button.onclick = ()=>{
-            cancleRequest(button);
+            return acceptRequest(redeem.id,trxNumInp);
         }
         let div = document.createElement('div');
         div.classList.add('reqCol');
-        div.appendChild(button);
+        form.appendChild(trxNumInp);
+        form.appendChild(button);
+        div.appendChild(form);
         return createColumn("action",div);
     }
     else if(status=="accepted"){
-        let button = document.createElement('button');
-        button.classList.add("btn","btn-primary");
-        button.innerHTML = "Confirm";
-        button.dataset.reqid = redeem.id;
-        button.onclick = ()=>{
-            confirmRequest(button);
-        }
-        let div = document.createElement('div');
-        div.classList.add('reqCol');
-        div.appendChild(createSpan("Transaction Id: "+redeem.trx_id))
-        div.appendChild(button);
-        return createColumn("action",div);
+        return createColumn("action",createProfileLink(redeem.accepted_by,"Accepted By"));
     }
     else if(status=="completed"){
         return createColumn("action",createSpan("Completed"));
     }
 }
 
-function cancleRequest(button){
-    let requestId = button.dataset.reqid;
-    let cancleReuest = new XMLHttpRequest();
-        cancleReuest.onload = function(){
-            let res = JSON.parse(cancleReuest.responseText);
-            if(res.status==false){
-                alert(res.error);
-            }
-            else{
-                alert("Request cancled");
-                location.reload();
-            }
+function acceptRequest(reqId,trxInp){
+    let transactionNumber = trxInp.value;
+    let acceptRequest = new XMLHttpRequest();
+    acceptRequest.onload = function(){
+        let res = JSON.parse(acceptRequest.responseText);
+        if(res.status==false){
+            alert(res.error);
         }
-        cancleReuest.open('GET','/redeem/cancle/'+requestId);
-        cancleReuest.send();
-}
-
-function confirmRequest(button){
-    let requestId = button.dataset.reqid;
-    let confirmReuest = new XMLHttpRequest();
-        confirmReuest.onload = function(){
-            let res = JSON.parse(confirmReuest.responseText);
-            if(res.status==false){
-                alert(res.error);
-            }
-            else{
-                alert("Request confirmed");
-                location.reload();
-            }
+        else{
+            alert("Transaction id sent");
+            location.reload();
         }
-        confirmReuest.open('POST','/redeem/confirm/'+requestId);
-        confirmReuest.send();
+    }
+    acceptRequest.open('GET',"/redeem/accept/"+reqId+"/"+transactionNumber);
+    acceptRequest.send();
+    return false;
 }

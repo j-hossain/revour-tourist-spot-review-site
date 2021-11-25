@@ -2,7 +2,6 @@
 <%- include('../common/_header.ejs') %>
     <title>Revour - Your rewards</title>
     <link rel="stylesheet" href="/css/rewardsPage.css">
-    <link rel="stylesheet" href="/css/redeemRequest.css">
     </head>
 
     <body>
@@ -26,16 +25,19 @@
                     <div class="redeemRequest">
                         <div class="FilterButtons">
                             <div class="button">
-                                <button onclick="showAll('true')" class="btn btn-primary">Show All</button>
+                                <button id="true" onclick="showAll('true')" class="btn btn-primary">Show All</button>
                             </div>
                             <div class="button">
-                                <button onclick="showAll('pending')" class="btn btn-primary">Pending</button>
+                                <button id="pending" onclick="showAll('pending')"
+                                    class="btn btn-primary">Pending</button>
                             </div>
                             <div class="button">
-                                <button onclick="showAll('accepted')" class="btn btn-primary">Accepted</button>
+                                <button id="accepted" onclick="showAll('accepted')"
+                                    class="btn btn-primary">Accepted</button>
                             </div>
                             <div class="button">
-                                <button onclick="showAll('completed')" class="btn btn-primary">Completed</button>
+                                <button id="completed" onclick="showAll('completed')"
+                                    class="btn btn-primary">Completed</button>
                             </div>
                         </div>
                         <div id="requestList">

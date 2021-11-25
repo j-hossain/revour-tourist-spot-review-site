@@ -5,6 +5,7 @@ const db = require('../controllers/dbConnetcors');
 const passport = require('passport');
 const slugify = require('slugify');
 const nodemailer = require('nodemailer');
+const REWARD = require('../controllers/reward');
 
 
 const transporter = nodemailer.createTransport({
@@ -59,11 +60,13 @@ authRouter.post('/signup', async (req,res)=>{
             else{
                 sendConfirmationMail(mailInp);
                 let userId = results.insertId;
-                db.query("insert into user_details (user_id) values (?)",[userId],(err,result)=>{
+                db.query("insert into user_details (user_id,points) values (?,?)",[userId,0],(err,result)=>{
                     if(err)
                         return res.send(err)
-                    else
+                    else{
+                        REWARD.newUserReward(userId);
                         return res.redirect('/auth/signin');
+                    }
                 });
             }
         });

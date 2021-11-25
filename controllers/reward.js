@@ -72,8 +72,22 @@ rewardController.uniqueLocationReward = async (userId)=>{
             let currentPoint = result[0].points;
             currentPoint+=uniqeReward;
             db.query("update user_details set points=? where user_id=?",[currentPoint,userId],(er,final)=>{
-                if(e5)
-                    return console.log(e5);
+                if(er)
+                    return console.log(er);
+            })
+        });
+    })
+}
+
+rewardController.newUserReward = async (userId)=>{
+    db.query("select * from rewards",(ee,rewards)=>{
+        let newUserReward = rewards[0].new_user;
+        db.query("select * from user_details where user_id=?",[userId],(err,result)=>{
+            let currentPoint = result[0].points;
+            currentPoint+=newUserReward;
+            db.query("update user_details set points=? where user_id=?",[currentPoint,userId],(er,final)=>{
+                if(er)
+                    return console.log(er);
             })
         });
     })
