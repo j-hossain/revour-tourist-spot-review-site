@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../controllers/dbConnetcors');
+const user = require('../models/user');
 const modRouter = express.Router();
 
 modRouter.get('/',checkAuthenticated,checkMod,(req,res)=>{
@@ -8,6 +9,26 @@ modRouter.get('/',checkAuthenticated,checkMod,(req,res)=>{
 
 modRouter.get('/redeem-requests',checkAuthenticated,checkMod,(req,res)=>{
     res.render('control-panel/redeem-requests.ejs',{user:req.user});
+});
+
+modRouter.get('/moderators',checkAuthenticated,checkAdmin,(req,res)=>{
+    db.query("select * from user_main",(err,users)=>{
+        if(err){
+            return res.send(err);
+        }
+        else{
+            let userArray = new Array();
+            for(let i=0;i<users.length;i++){
+                let user={
+                    id:users[i].id,
+                    username:users[i].username,
+                    role:users[i].role
+                }
+                userArray.push(user);
+            }
+            return res.render('control-panel/manage-users',{user:req.user,alluser:userArray});
+        }
+    })
 });
 
 modRouter.get('/reported-reviews',checkAuthenticated,checkMod,(req,res)=>{
@@ -30,7 +51,15 @@ modRouter.get('/reported-reviews',checkAuthenticated,checkMod,(req,res)=>{
 });
 
 function checkMod(req,res,next){
-    if(req.user.role=="mod" || req.user.role=="mod")
+    if(req.user.role=="mod" || req.user.role=="admin")
+        return next();
+    else{
+        return res.redirect('/');
+    }
+}
+
+function checkAdmin(req,res,next){
+    if(req.user.role=="admin")
         return next();
     else{
         return res.redirect('/');

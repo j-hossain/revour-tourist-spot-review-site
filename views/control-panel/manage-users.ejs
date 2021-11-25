@@ -1,0 +1,46 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="/css/controlPanelSideBar.css">
+    <link rel="stylesheet" href="/css/modReportControl.css">
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="contentBody d-flex">
+                <%- include('../common/_sidebar.ejs') %>
+                    <div class="controlBody w-100">
+                        <h1 class="text-center">Reported Reviews</h1>
+                        <div class="userList">
+                            <% for( let i=0; i < alluser.length; i++ ) { %>
+                                <div class="userBox">
+                                    <div class="userLink usCol">
+                                        <a href="/profile/show/<%= alluser[i].id %> ">
+                                            <%= alluser[i].username %>
+                                        </a>
+                                    </div>
+                                    <div class="role usCol">
+                                        <select name="user-role" id="user-role">
+                                            <option value="general" <% if (alluser[i].role=="general" ) { %>
+                                                selected="selected"
+                                                <% } %>>General
+                                            </option>
+                                            <option value="mod" <% if (alluser[i].role=="mod" ) { %>
+                                                selected="selected"
+                                                <% } %>>Moderator
+                                            </option>
+                                            <option value="admin" <% if (alluser[i].role=="admin" ) { %>
+                                                selected="selected"
+                                                <% } %>>Admin
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+            </div>
+            <%- include('../common/_footer.ejs') %>
+    </body>
+
+    </html>

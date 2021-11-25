@@ -7,8 +7,8 @@ fetchRedeemRequests(userId);
 function sendRedeemRequest(form){
     let redeemRequestData = new FormData(form);
     redeemRequestData.set('user_id',userId);
-    let requestedPoint = redeemRequestData.get('redeem_point');
-    let available = document.getElementById('currentPoint').dataset.point;
+    let requestedPoint = parseInt(redeemRequestData.get('redeem_point'));
+    let available =parseInt(document.getElementById('currentPoint').dataset.point);
     if(requestedPoint<100){
         alert("Minimum redeem request is 100")
     }
