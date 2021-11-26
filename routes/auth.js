@@ -51,7 +51,8 @@ authRouter.post('/signup', async (req,res)=>{
             username: fNameInp,
             full_name: fNameInp+" "+lNameInp,
             email: mailInp,
-            pass: hashedPass
+            pass: hashedPass,
+            role:"general"
         },(err,results)=>{
             if(err){
                 console.log(err);
@@ -60,7 +61,7 @@ authRouter.post('/signup', async (req,res)=>{
             else{
                 sendConfirmationMail(mailInp);
                 let userId = results.insertId;
-                db.query("insert into user_details (user_id,points,role) values (?,?,?)",[userId,0,"general"],(err,result)=>{
+                db.query("insert into user_details (user_id,points) values (?,?)",[userId,0],(err,result)=>{
                     if(err)
                         return res.send(err)
                     else{
