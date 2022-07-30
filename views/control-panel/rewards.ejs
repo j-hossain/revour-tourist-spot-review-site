@@ -1,0 +1,30 @@
+<!-- head is started here -->
+<%- include('../common/_header.ejs') %>
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="/css/controlPanelSideBar.css">
+    <link rel="stylesheet" href="/css/managerewards.css">
+    </head>
+
+    <body>
+        <%- include('../common/_navBar.ejs') %>
+            <div class="contentBody d-flex">
+                <%- include('../common/_sidebar.ejs') %>
+                    <div class="controlBody w-100">
+                        <h1 class="text-center">Controle Rewards</h1>
+                        <form class="rewardsForm">
+                            <div class="formOption"><label class="form-label">Unique Location</label><input class="form-input" type="text" value="<%= rewards.unique_location %>" name="unique_location"></div>
+                            <div class="formOption"><label class="form-label">New User</label><input class="form-input" type="text" value="<%= rewards.new_user %>" name="new_user"></div>
+                            <div class="formOption"><label class="form-label">Minimum Tick</label><input class="form-input" type="text" value="<%= rewards.max_tick %>" name="max_tick"></div>
+                            <div class="formOption"><label class="form-label">Per Tick</label><input class="form-input" type="text" value="<%= rewards.per_tick %>" name="per_tick"></div>
+                            <div class="formOption"><label class="form-label">Minimum Answer</label><input class="form-input" type="text" value="<%= rewards.max_answer %>" name="max_answer"></div>
+                            <div class="formOption"><label class="form-label">Per Answer</label><input class="form-input" type="text" value="<%= rewards.per_answer %>" name="per_answer"></div>
+                            <button class="btn btn-primary" type="submit"
+                            onclick="return updateRewards(this.form);">Update</button>
+                        </form>
+                        
+            </div>
+            <%- include('../common/_footer.ejs') %>
+            <script src="/js/updateReward.js"></script>
+    </body>
+
+    </html>

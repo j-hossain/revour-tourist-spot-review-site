@@ -31,6 +31,25 @@ modRouter.get('/moderators',checkAuthenticated,checkAdmin,(req,res)=>{
     })
 });
 
+modRouter.get('/rewards',checkAuthenticated,checkAdmin,(req,res)=>{
+    db.query("select * from rewards",(err,rewards)=>{
+        if(err){
+            return res.send(err);
+        }
+        else{
+            let reward = {
+                unique_location:rewards[0].unique_location,
+                max_tick:rewards[0].max_tick,
+                per_tick:rewards[0].per_tick,
+                per_answer:rewards[0].per_answer,
+                max_answer:rewards[0].max_answer,
+                new_user:rewards[0].new_user
+            }
+            return res.render('control-panel/rewards',{user:req.user,rewards:reward});
+        }
+    })
+});
+
 modRouter.get('/reported-reviews',checkAuthenticated,checkMod,(req,res)=>{
     db.query("select count(reports.review_id) as total_reports,reports.review_id from reports GROUP BY reports.review_id",(err,reports)=>{
         if(err){
@@ -53,6 +72,25 @@ modRouter.get('/reported-reviews',checkAuthenticated,checkMod,(req,res)=>{
 modRouter.post('/update-role/:user/:role',checkAuthenticated,checkAdmin,(req,res)=>{
     // console.log("hello");
     db.query("update user_main set role=? where id=?",[req.params.role,req.params.user],(err,result)=>{
+        if(err){
+            console.log(err)
+            return res.send(err);
+        }
+        else{
+            return res.send("ok");
+        }
+    });
+});
+modRouter.post('/update-reward/:unil/:newu/:pert/:maxt/:pera/:maxa',checkAuthenticated,checkAdmin,(req,res)=>{
+    // console.log("hello");
+    let unique_location = parseInt(req.params.unil);
+    let max_tick = parseInt(req.params.maxt);
+    let per_tick = parseInt(req.params.pert);
+    let per_answer = parseInt(req.params.pera);
+    let max_answer = parseInt(req.params.maxa);
+    let new_user = parseInt(req.params.newu);
+    db.query("update rewards set unique_location=? and max_tick=? and per_tick=? and per_answer=? and max_answer=? and new_user=?",
+        [unique_location,max_tick,per_tick,per_answer,max_answer,new_user],(err,result)=>{
         if(err){
             console.log(err)
             return res.send(err);
