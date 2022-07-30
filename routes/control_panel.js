@@ -50,6 +50,21 @@ modRouter.get('/reported-reviews',checkAuthenticated,checkMod,(req,res)=>{
     });
 });
 
+modRouter.post('/update-role/:user/:role',checkAuthenticated,checkAdmin,(req,res)=>{
+    // console.log("hello");
+    db.query("update user_main set role=? where id=?",[req.params.role,req.params.user],(err,result)=>{
+        if(err){
+            console.log(err)
+            return res.send(err);
+        }
+        else{
+            return res.send("ok");
+        }
+    });
+});
+
+
+
 function checkMod(req,res,next){
     if(req.user.role=="mod" || req.user.role=="admin")
         return next();

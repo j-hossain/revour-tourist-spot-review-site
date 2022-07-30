@@ -38,12 +38,12 @@ authRouter.post('/signup', async (req,res)=>{
             console.log(err);
         }
         if(results.length>0){
-            console.log("email exists");
-            return res.redirect('/auth/signup');;
+
+            return res.render('auth/signup',{message:"This email exists"});
         }
         if(passInp != conPassInp){
             console.log("passwords dont match");
-            return res.redirect('/auth/signup');;
+            return res.render('auth/signup',{message:"The passwords don't match"});;
         }
 
         let hashedPass = await bcrypt.hash(passInp,10);
@@ -56,7 +56,7 @@ authRouter.post('/signup', async (req,res)=>{
         },(err,results)=>{
             if(err){
                 console.log(err);
-                res.redirect('/auth/signup');
+                res.redirect('/auth/signup',{message:err});
             }
             else{
                 sendConfirmationMail(mailInp);

@@ -6,20 +6,29 @@
 
     <body>
         <%- include('../common/_navBar.ejs') %>
-            <div class="container contentBody">
-                <form class="authBox" action="/auth/signup" method="POST">
-                    <h1>Sign up</h1>
-                    <input name="fNameInp" required type="text" id="fNameInp" placeholder="Enter you first name">
-                    <input name="lNameInp" required type="text" id="lNameInp" placeholder="Enter you last name">
-                    <input name="mailInp" required type="email" id="mailInp" placeholder="Enter you email">
-                    <input name="passInp" required type="password" id="passInp" placeholder="Enter a password">
-                    <input name="conPassInp" required type="password" id="conPassInp"
-                        placeholder="Confirm the password">
-                    <button type="submit">Sign up</button>
-                </form>
-            </div>
+            <% if(typeof message==='undefined' ){ %>
+                <% } else { %>
 
-            <%- include('../common/_footer.ejs') %>
+                    <script>alert("<%= message %>");</script>
+
+                    <% } %>
+                        <div class="container contentBody">
+                            <form class="authBox" action="/auth/signup" method="POST">
+                                <h1>Sign up</h1>
+                                <input name="fNameInp" required type="text" id="fNameInp"
+                                    placeholder="Enter you first name">
+                                <input name="lNameInp" required type="text" id="lNameInp"
+                                    placeholder="Enter you last name">
+                                <input name="mailInp" required type="email" id="mailInp" placeholder="Enter you email">
+                                <input name="passInp" required type="password" id="passInp"
+                                    placeholder="Enter a password">
+                                <input name="conPassInp" required type="password" id="conPassInp"
+                                    placeholder="Confirm the password">
+                                <button type="submit">Sign up</button>
+                            </form>
+                        </div>
+
+                        <%- include('../common/_footer.ejs') %>
     </body>
 
     </html>
